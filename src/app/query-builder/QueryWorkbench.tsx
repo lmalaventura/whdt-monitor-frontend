@@ -5,14 +5,21 @@ import { ObservationQueryPanel } from "./panels/ObservationQueryPanel";
 import { PropertyTagQueryPanel } from "./panels/PropertyTagQueryPanel";
 import { ViewsPanel } from "./panels/ViewsPanel";
 import { RawDataAvailabilityPanel } from "./panels/RawDataAvailabilityPanel";
+import { NaturalLanguageQueryPanel } from "./panels/NaturalLanguageQueryPanel";
 
-type TabKey = "observation" | "property" | "views" | "availability";
+type TabKey =
+  | "observation"
+  | "property"
+  | "views"
+  | "availability"
+  | "natural-language";
 
 const TABS: { key: TabKey; label: string }[] = [
   { key: "observation", label: "Observation" },
   { key: "property", label: "Property" },
   { key: "views", label: "Views" },
   { key: "availability", label: "Raw Data Availability" },
+  { key: "natural-language", label: "Natural Language" },
 ];
 
 export default function QueryWorkbench() {
@@ -23,7 +30,7 @@ export default function QueryWorkbench() {
       <div className="w-full max-w-6xl bg-gray-800 p-8 rounded-xl shadow-xl text-white">
         <h1 className="text-2xl font-bold mb-6">Query Workbench</h1>
 
-        <div className="flex gap-2 mb-6 border-b border-gray-600">
+        <div className="flex gap-2 mb-6 border-b border-gray-600 flex-wrap">
           {TABS.map((tab) => (
             <button
               key={tab.key}
@@ -43,6 +50,7 @@ export default function QueryWorkbench() {
         {activeTab === "property" && <PropertyTagQueryPanel />}
         {activeTab === "views" && <ViewsPanel />}
         {activeTab === "availability" && <RawDataAvailabilityPanel />}
+        {activeTab === "natural-language" && <NaturalLanguageQueryPanel />}
       </div>
     </div>
   );
